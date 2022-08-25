@@ -1,5 +1,6 @@
 name: setup-algolia-cli
 description: Setup Algolia CLI, algolia, on GitHub Actions runners
+icon: search
 inputs:
   version:
     description: Version of Algolia CLI to install
