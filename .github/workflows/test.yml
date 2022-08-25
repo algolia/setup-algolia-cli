@@ -1,0 +1,45 @@
+name: Tests
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        version: ['1.1.2-beta']
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup algolia cli
+      uses: ./
+      with:
+        version: ${{ matrix.version }}
+
+    - name: Capture algolia version installed
+      run: |
+        export ALGOLIA_CLI_VERSION=$( algolia --version )
+        echo 'ALGOLIA_CLI_VERSION_INSTALLED<<EOF' >> $GITHUB_ENV
+        algolia --version >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
+
+    - name: Verify
+      shell: python
+      env:
+        ALGOLIA_CLI_VERSION_EXPECTED: ${{ matrix.version }}
+      run: |
+        import sys, os
+        sys.exit(
+            int(not os.environ["ALGOLIA_CLI_VERSION_EXPECTED"] in os.environ["ALGOLIA_CLI_VERSION_INSTALLED"])
+        )

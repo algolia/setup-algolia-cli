@@ -1,0 +1,10 @@
+name: setup-algolia-cli
+description: Setup Algolia CLI, algolia, on GitHub Actions runners
+inputs:
+  version:
+    description: Version of Algolia CLI to install
+    required: false
+    default: latest
+runs:
+  using: node12
+  main: dist/index.js
