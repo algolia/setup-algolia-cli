@@ -11,14 +11,14 @@ Setup the `algolia` CLI:
 
 ```yaml
 steps:
-- uses: algolia/setup-algolia-cli@v1
+- uses: algolia/setup-algolia-cli@master
 ```
 
 A specific version of the `algolia` CLI can be installed:
 
 ```yaml
 steps:
-- uses: algolia/setup-algolia-cli@v1
+- uses: algolia/setup-algolia-cli@master
   with:
     version:
       1.2.0
@@ -28,7 +28,7 @@ The credentials for the `algolia` CLI can be set using the `ALGOLIA_APPLICATION_
 
 ```yaml
 steps:
-- uses: algolia/setup-algolia-cli@v1
+- uses: algolia/setup-algolia-cli@master
   env:
     ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APPLICATION_ID }}
     ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
