@@ -21,7 +21,7 @@ steps:
 - uses: algolia/setup-algolia-cli@v1
   with:
     version:
-      1.1.0
+      1.2.0
 ```
 
 The credentials for the `algolia` CLI can be set using the `ALGOLIA_APPLICATION_ID` and `ALGOLIA_ADMIN_API_KEY` environment variables:
